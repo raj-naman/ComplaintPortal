@@ -19,6 +19,15 @@ public class Complaint
 	private int year;
 	private String ctype;
 	private String complaint;
+	private String status;
+	private String message;
+	
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
 	public String getRoll() {
 		return roll;
 	}
@@ -66,6 +75,18 @@ public class Complaint
 	}
 	public void setComplaint(String complaint) {
 		this.complaint = complaint;
+	}
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
+	}
+	public String getMessage() {
+		return message;
+	}
+	public void setMessage(String message) {
+		this.message = message;
 	}
 	@Override
 	public String toString() {

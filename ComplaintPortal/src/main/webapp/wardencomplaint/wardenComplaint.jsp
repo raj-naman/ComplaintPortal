@@ -1,7 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,21 +15,20 @@
      if(session.getAttribute("username") == null){
     	 response.sendRedirect("/wardenlogin");
      }
-%>
+  %>
+
 <a href = "/wardenlogout">Logout</a>
 
 </br>
-Welcome Warden
+${complaint}
+${complaint.id }
+${complaint.roll}
 
-<table>
-  <c:forEach items="${complaints}" var="comp">
-    <tr>
-      <td><a href = "/saccomplaint/${comp.id}"><c:out value="${comp.roll}" /></a></td>
-      <td><c:out value="${comp.name}" /></td>
-    </tr>
-  </c:forEach>
-</table>
-
+<form action = "view/${complaint.id}">
+	Status <input type = "text" name = "status"><br>
+	Message <textarea name="message" style="width:200px; height:100px;"></textarea>
+  	<input type = "submit">
+</form>
 
 </body>
 </html>

@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,29 +7,28 @@
 <title>Insert title here</title>
 </head>
 <body>
- 
- <%
+
+<%
      
 	 response.setHeader("Cache-Control" , "no-cache , no-store , must-revalidae");   
    
      if(session.getAttribute("username") == null){
     	 response.sendRedirect("/saclogin");
      }
-%>
+  %>
 
 <a href = "/saclogout">Logout</a>
 
 </br>
- Welcome SAC
- 
-<table>
-  <c:forEach items="${complaints}" var="comp">
-    <tr>
-      <td><a href = "/saccomplaint/${comp.id}"><c:out value="${comp.roll}" /></a></td>
-      <td><c:out value="${comp.name}" /></td>
-    </tr>
-  </c:forEach>
-</table>
+${complaint}
+${complaint.id }
+${complaint.roll}
+
+<form action = "view/${complaint.id}">
+	Status <input type = "text" name = "status"><br>
+	Message <textarea name="message" style="width:200px; height:100px;"></textarea>
+  	<input type = "submit">
+</form>
 
 
 </body>
