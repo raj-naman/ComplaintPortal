@@ -8,7 +8,27 @@
 </head>
 <body>
 
-Hi
+<h1>Complaint Portal for IIITB</h1>
 
+<a href = "/addComplaint">Add Complaint</a>
+</br>
+
+<a href = "/fcomlogin">Food Commitee Login</a>
+</br>
+
+<a href = "/saclogin">SAC Login</a>
+</br>
+
+<a href = "/wardenlogin">Warden Login</a>
+</br>
+
+<a href = "/sportcomlogin">Sports Commitee Login</a>
+</br>
+
+<a href = "/trackstatus">Track Status</a>
+</br>
+
+<a href = "/complaints">Your Complaints</a>
+</br>
 </body>
 </html>

@@ -15,14 +15,19 @@ public interface CompliantRepo extends JpaRepository<Complaint , Integer>
 {
 	List<Complaint> findByCtype(String ctype);
 	
+	List<Complaint> findByRoll(String roll);
+	
 	@Query(value = "SELECT * FROM complaint t WHERE t.ctype = 'mess'", nativeQuery=true)
 	List<Complaint> findByFcom();
 	
 	@Query(value = "SELECT * FROM complaint t WHERE t.ctype = 'sac'", nativeQuery=true)
 	List<Complaint> findBySac();
 	
-	@Query(value = "SELECT * FROM complaint t WHERE t.ctype = 'sac'", nativeQuery=true)
-	List<Complaint> findByWarden();
+	@Query(value = "SELECT * FROM complaint t WHERE t.ctype = 'sac' and t.hostel = 'Bhaskara'", nativeQuery=true)
+	List<Complaint> findByWardenAndMen();
+	
+	@Query(value = "SELECT * FROM complaint t WHERE t.ctype = 'sac' and t.hostel = 'Lilavati'", nativeQuery=true)
+	List<Complaint> findByWardenAndWomen();
 	
 	@Query(value = "SELECT * FROM complaint t WHERE t.ctype = 'sport'", nativeQuery=true)
 	List<Complaint> findByScom();
@@ -31,6 +36,7 @@ public interface CompliantRepo extends JpaRepository<Complaint , Integer>
 	@Transactional
 	@Query(value = "UPDATE complaint t set t.status = ?1 , t.message = ?2 WHERE t.id=?3 ", nativeQuery=true)
 	int updateComplaint(String status , String message ,  int id);
+	
 
 
 }

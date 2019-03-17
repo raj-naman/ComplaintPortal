@@ -128,7 +128,23 @@ public class loginController
 	public ModelAndView wardenCompList(ModelAndView mv)
 	{
 		mv.setViewName("welcomewarden.jsp");
-		List<Complaint> list = (List<Complaint>) comprepo.findByWarden();
+		return mv;
+	}
+	
+	@GetMapping("/bhaskaracomplist")
+	public ModelAndView lilavatiCompList(ModelAndView mv)
+	{
+		mv.setViewName("bhaskara.jsp");
+		List<Complaint> list = (List<Complaint>) comprepo.findByWardenAndMen();
+		mv.addObject("complaints" , list);
+		return mv;
+	}
+	
+	@GetMapping("/lilavaticomplist")
+	public ModelAndView bhaskaraCompList(ModelAndView mv)
+	{
+		mv.setViewName("lilavati.jsp");
+		List<Complaint> list = (List<Complaint>) comprepo.findByWardenAndWomen();
 		mv.addObject("complaints" , list);
 		return mv;
 	}

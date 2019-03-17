@@ -1,9 +1,16 @@
 package com.namanraj.demo.model;
 
+import java.util.Date;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import org.hibernate.annotations.CreationTimestamp;
 
 @Entity
 public class Complaint 
@@ -18,9 +25,26 @@ public class Complaint
 	private String degree;
 	private int year;
 	private String ctype;
-	private String complaint;
+	private String compbody;
 	private String status;
 	private String message;
+	private String password;
+	
+	@CreationTimestamp
+	@Temporal(TemporalType.DATE)
+	private Date createDate;
+
+	@CreationTimestamp
+	@Temporal(TemporalType.DATE)
+	private Date modifyDate;
+	
+	@CreationTimestamp
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date createTimestamp;
+
+	@CreationTimestamp
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date updateTimestamp;
 	
 	public int getId() {
 		return id;
@@ -70,11 +94,11 @@ public class Complaint
 	public void setCtype(String ctype) {
 		this.ctype = ctype;
 	}
-	public String getComplaint() {
-		return complaint;
+	public String getCompbody() {
+		return compbody;
 	}
-	public void setComplaint(String complaint) {
-		this.complaint = complaint;
+	public void setCompbody(String compbody) {
+		this.compbody = compbody;
 	}
 	public String getStatus() {
 		return status;
@@ -88,11 +112,46 @@ public class Complaint
 	public void setMessage(String message) {
 		this.message = message;
 	}
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	public Date getCreateDate() {
+		return createDate;
+	}
+	public void setCreateDate(Date createDate) {
+		this.createDate = createDate;
+	}
+	public Date getModifyDate() {
+		return modifyDate;
+	}
+	public void setModifyDate(Date modifyDate) {
+		this.modifyDate = modifyDate;
+	}
+	public Date getCreateTimestamp() {
+		return createTimestamp;
+	}
+	public void setCreateTimestamp(Date createTimestamp) {
+		this.createTimestamp = createTimestamp;
+	}
+	public Date getUpdateTimestamp() {
+		return updateTimestamp;
+	}
+	public void setUpdateTimestamp(Date updateTimestamp) {
+		this.updateTimestamp = updateTimestamp;
+	}
 	@Override
 	public String toString() {
-		return "Complaint [roll=" + roll + ", name=" + name + ", hostel=" + hostel + ", room=" + room + ", degree="
-				+ degree + ", year=" + year + ", ctype=" + ctype + ", complaint=" + complaint + "]";
+		return "Complaint [id=" + id + ", roll=" + roll + ", name=" + name + ", hostel=" + hostel + ", room=" + room
+				+ ", degree=" + degree + ", year=" + year + ", ctype=" + ctype + ", compbody=" + compbody + ", status="
+				+ status + ", message=" + message + ", createDate=" + createDate + ", modifyDate=" + modifyDate + "]";
 	}
+	
+	
+	
+	
 	
 	
 

@@ -21,12 +21,18 @@
 <a href = "/wardenlogout">Logout</a>
 
 </br>
-Welcome Warden
+Bhaskara Complaint List
 
 </br>
-<a href = "/bhaskaracomplist">Bhaskar Complaint List</a>
-<br>
-<a href = "/lilavaticomplist">Lilavati Complaint List</a>
+
+<table>
+  <c:forEach items="${complaints}" var="comp">
+    <tr>
+      <td><a href = "/wardencomplaint/${comp.id}"><c:out value="${comp.roll}" /></a></td>
+      <td><c:out value="${comp.name}" /></td>
+    </tr>
+  </c:forEach>
+</table>
 
 
 </body>

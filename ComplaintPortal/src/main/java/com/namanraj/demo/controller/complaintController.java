@@ -1,23 +1,19 @@
 package com.namanraj.demo.controller;
 
-import java.io.IOException;
 import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.namanraj.demo.dao.CompliantRepo;
+import com.namanraj.demo.dao.StudentRepo;
 import com.namanraj.demo.model.Complaint;
 
 @RestController
@@ -26,25 +22,65 @@ public class complaintController
 	@Autowired
 	CompliantRepo repo;
 	
-	@RequestMapping("/")
-	public ModelAndView home()
-	{
+	@Autowired
+	StudentRepo studentrepo;
+	
+	@GetMapping("/")
+	public ModelAndView home() {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("home.jsp");
+		return mv;
+	}
+	
+	@RequestMapping("/addComplaint")
+	public ModelAndView complaint(){
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("complaint.jsp");
 		return mv;
 	}
 	
-	@PostMapping("/addComplaint")
+	/* -------  Add Complaint -----------*/
+	
+	@PostMapping(value="/success" , consumes = {"application/x-www-form-urlencoded"})
 	//@JsonFormat(shape=JsonFormat.Shape.ARRAY)
 
-	public Complaint addComplaint(@RequestBody Complaint complaint) {
-		repo.save(complaint);
-		return complaint;
+	public ModelAndView addComplaint(Complaint complaint) {
+		ModelAndView mv = new ModelAndView();
+		if(studentrepo.findByRollAndPassword(complaint.getRoll(), complaint.getPassword()) != null) {
+			repo.save(complaint);	
+			mv.setViewName("compconfirmation.jsp");
+			mv.addObject("complaint" , complaint);
+			return mv;
+		}
+		else {
+			mv.setViewName("redirect:/addComplaint");
+			return mv;
+		}
+		
 	}
 	
+	/*-------  Find All Complaints of a Student ------*/
+	
 	@GetMapping(path="/complaints")
-	public List<Complaint> getComplaints() {
-		return (List<Complaint>) repo.findAll();
+	public ModelAndView complaints() {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("complaints.jsp");
+		return mv;
+	}
+	
+	@RequestMapping(value="/getComplaints" , method = RequestMethod.POST)
+	public ModelAndView getComplaints(@RequestParam("roll") String roll , @RequestParam("password") String password) {
+		ModelAndView mv = new ModelAndView();
+		if(studentrepo.findByRollAndPassword(roll, password) != null) {
+			mv.setViewName("viewcomplaints.jsp");
+			List<Complaint> list = (List<Complaint>)repo.findByRoll(roll);
+			mv.addObject("complaints" , list);
+			return mv;
+		}
+		else {
+			mv.setViewName("redirect:/complaints");
+			return mv;
+		}
 	}
 	
 	/*--------- View and add status in Food Complaint ---------------*/
@@ -146,5 +182,35 @@ public class complaintController
 		return mv;
 	}
 	
-}
+	/*---------  Track Status  -------------*/
+	@GetMapping("/trackstatus")
+	public ModelAndView status() {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("trackstatus.jsp");
+		return mv;
+	}
+	
+	@GetMapping("/status")
+	public ModelAndView trackStatus(@RequestParam("id") int id) {
+		ModelAndView mv = new ModelAndView();
+		Complaint getStatus = repo.findById(id).orElse(null);
+		if(getStatus == null) {
+			mv.setViewName("error.jsp");
+			String error = "Id Not found";
+			mv.addObject("error" , error);
+			return mv;
+		}
+		else {
+			mv.setViewName("viewstatus.jsp");
+			mv.addObject("getStatus" , getStatus);
+			return mv;
+		}
+		
+		
+	}
+	
+	
+	
+}	
+
 	
