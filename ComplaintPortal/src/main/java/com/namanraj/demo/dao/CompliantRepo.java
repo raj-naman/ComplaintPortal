@@ -1,16 +1,17 @@
 package com.namanraj.demo.dao;
 
 import java.util.List;
-import java.util.Optional;
 
 import javax.transaction.Transactional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
 
 import com.namanraj.demo.model.Complaint;
 
+@Repository
 public interface CompliantRepo extends JpaRepository<Complaint , Integer> 
 {
 	List<Complaint> findByCtype(String ctype);
@@ -31,6 +32,9 @@ public interface CompliantRepo extends JpaRepository<Complaint , Integer>
 	
 	@Query(value = "SELECT * FROM complaint t WHERE t.ctype = 'sport'", nativeQuery=true)
 	List<Complaint> findByScom();
+	
+	@Query(value = "SELECT * FROM complaint t WHERE t.ctype = 'net'", nativeQuery=true)
+	List<Complaint> findByNetcom();
 	
 	@Modifying(clearAutomatically = true)
 	@Transactional

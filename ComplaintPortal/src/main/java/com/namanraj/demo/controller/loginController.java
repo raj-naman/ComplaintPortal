@@ -149,8 +149,10 @@ public class loginController
 		return mv;
 	}
 	
-	// Sports Commitee Login
 
+	// Sport Commitee Login
+
+	
 	@RequestMapping("/sportcomlogin")
 	public ModelAndView sports()
 	{
@@ -183,6 +185,46 @@ public class loginController
 		mv.addObject("complaints" , list);
 		return mv;
 	}
+	
+	
+	
+	// Internet Commitee Login
+
+	@RequestMapping("/netcomlogin")
+	public ModelAndView internet()
+	{
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("netcomlogin.jsp");
+		return mv;
+	}
+	
+	@RequestMapping("/login-netcom")
+	public ModelAndView loginNetcom(@ModelAttribute User user , HttpSession session)
+	{
+		ModelAndView mv = new ModelAndView();
+		if(loginrepo.findByUsernameAndPassword(user.getUsername(), user.getPassword()) != null) {
+			session.setAttribute("username", user.getUsername());
+			mv.setViewName("redirect:/netcomplist");
+			return mv;
+		}
+		else {
+			mv.setViewName("netcomlogin.jsp");
+			return mv;
+		}
+		
+	}
+	
+	@GetMapping("/netcomplist")
+	public ModelAndView NetCompList(ModelAndView mv)
+	{
+		mv.setViewName("welcomeNetcom.jsp");
+		List<Complaint> list = (List<Complaint>) comprepo.findByNetcom();
+		mv.addObject("complaints" , list);
+		return mv;
+	}
+	
+	
+	
 	
 /*------  Foodcom Logout -----*/
 	
@@ -223,9 +265,46 @@ public class loginController
 		session.invalidate();
 		response.sendRedirect("/sportcomlogin");
 	}
+	
+	/*------  Netcom Logout -----*/
+	
+	@GetMapping("/netcomlogout")
+	public void netcomLogout(HttpServletRequest request, HttpServletResponse response) throws IOException{
+		HttpSession session = request.getSession();
+		session.removeAttribute("username");
+		session.invalidate();
+		response.sendRedirect("/netcomlogin");
+	}
 
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
+	/*------  About Us   ----*/
 
+	@RequestMapping("/aboutUs")
+	public ModelAndView aboutUs()
+	{
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("aboutUs.jsp");
+		return mv;
+	}
+	
+	/*------  Feedback -----*/
+	
+	@RequestMapping("/feedback")
+	public ModelAndView feedback()
+	{
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("feedback.jsp");
+		return mv;
+	}
 
 
 }

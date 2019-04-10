@@ -1,6 +1,10 @@
 package com.namanraj.demo.controller;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,6 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.namanraj.demo.dao.CompliantRepo;
 import com.namanraj.demo.dao.StudentRepo;
 import com.namanraj.demo.model.Complaint;
+import com.namanraj.demo.model.Student;
 
 @RestController
 public class complaintController 
@@ -24,6 +29,9 @@ public class complaintController
 	
 	@Autowired
 	StudentRepo studentrepo;
+	
+	SimpleDateFormat sdf=new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+
 	
 	@GetMapping("/")
 	public ModelAndView home() {
@@ -44,52 +52,51 @@ public class complaintController
 	@PostMapping(value="/success" , consumes = {"application/x-www-form-urlencoded"})
 	//@JsonFormat(shape=JsonFormat.Shape.ARRAY)
 
-	public ModelAndView addComplaint(Complaint complaint) {
+	public ModelAndView addComplaint(@RequestParam("ctype") String ctype ,
+									@RequestParam("compbody") String compbody , HttpSession session) {
 		ModelAndView mv = new ModelAndView();
-		if(studentrepo.findByRollAndPassword(complaint.getRoll(), complaint.getPassword()) != null) {
-			repo.save(complaint);	
-			mv.setViewName("compconfirmation.jsp");
-			mv.addObject("complaint" , complaint);
-			return mv;
-		}
-		else {
-			mv.setViewName("redirect:/addComplaint");
-			return mv;
-		}
+		String roll = (String) session.getAttribute("username");
+		Student student = studentrepo.findByRoll(roll);
+		Complaint complaint  = new Complaint(0, roll, student.getName(), student.getHostel(),
+				student.getRoom(), ctype, compbody,null, null, sdf.format(new Date(System.currentTimeMillis())));
+		repo.save(complaint);	
+		mv.setViewName("compconfirmation.jsp");
+		mv.addObject("complaint" , complaint);
+		return mv;
 		
 	}
 	
 	/*-------  Find All Complaints of a Student ------*/
 	
-	@GetMapping(path="/complaints")
-	public ModelAndView complaints() {
-		ModelAndView mv = new ModelAndView();
-		mv.setViewName("complaints.jsp");
-		return mv;
-	}
-	
-	@RequestMapping(value="/getComplaints" , method = RequestMethod.POST)
-	public ModelAndView getComplaints(@RequestParam("roll") String roll , @RequestParam("password") String password) {
-		ModelAndView mv = new ModelAndView();
-		if(studentrepo.findByRollAndPassword(roll, password) != null) {
-			mv.setViewName("viewcomplaints.jsp");
-			List<Complaint> list = (List<Complaint>)repo.findByRoll(roll);
-			mv.addObject("complaints" , list);
-			return mv;
-		}
-		else {
-			mv.setViewName("redirect:/complaints");
-			return mv;
-		}
-	}
-	
+//	@GetMapping(path="/complaints")
+//	public ModelAndView complaints() {
+//		ModelAndView mv = new ModelAndView();
+//		mv.setViewName("complaints.jsp");
+//		return mv;
+//	}
+//	
+//	@RequestMapping(value="/getComplaints" , method = RequestMethod.POST)
+//	public ModelAndView getComplaints(@RequestParam("roll") String roll , @RequestParam("password") String password) {
+//		ModelAndView mv = new ModelAndView();
+//		if(studentrepo.findByRollAndPassword(roll, password) != null) {
+//			mv.setViewName("viewcomplaints.jsp");
+//			List<Complaint> list = (List<Complaint>)repo.findByRoll(roll);
+//			mv.addObject("complaints" , list);
+//			return mv;
+//		}
+//		else {
+//			mv.setViewName("redirect:/complaints");
+//			return mv;
+//		}
+//	}
+//	
 	/*--------- View and add status in Food Complaint ---------------*/
 	
 	@GetMapping("/foodcomplaint/{compid}")
 	//@ResponseBody
 	public ModelAndView foodComplaint(@PathVariable("compid") int compid) {
 
-		Complaint complaint = repo.findById(compid).orElse(new Complaint());
+		Complaint complaint = repo.findById(compid).orElse(null);
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("viewComplaint.jsp");
 		mv.addObject("complaint" , complaint);
@@ -114,7 +121,7 @@ public class complaintController
 	//@ResponseBody
 	public ModelAndView sacComplaint(@PathVariable("compid") int compid) {
 
-		Complaint complaint = repo.findById(compid).orElse(new Complaint());
+		Complaint complaint = repo.findById(compid).orElse(null);
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("sacComplaint.jsp");
 		mv.addObject("complaint" , complaint);
@@ -139,7 +146,7 @@ public class complaintController
 	//@ResponseBody
 	public ModelAndView wardenComplaint(@PathVariable("compid") int compid) {
 
-		Complaint complaint = repo.findById(compid).orElse(new Complaint());
+		Complaint complaint = repo.findById(compid).orElse(null);
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("wardenComplaint.jsp");
 		mv.addObject("complaint" , complaint);
@@ -164,7 +171,7 @@ public class complaintController
 	//@ResponseBody
 	public ModelAndView sportComplaint(@PathVariable("compid") int compid) {
 
-		Complaint complaint = repo.findById(compid).orElse(new Complaint());
+		Complaint complaint = repo.findById(compid).orElse(null);
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("sportComplaint.jsp");
 		mv.addObject("complaint" , complaint);
@@ -181,6 +188,34 @@ public class complaintController
 	    mv.setViewName("redirect:/sportscomplist");
 		return mv;
 	}
+	
+	
+/*--------- View and add status in Internet Complaint ---------------*/
+
+	
+	@GetMapping("/netcomplaint/{compid}")
+	public ModelAndView NetComplaint(@PathVariable("compid") int compid) {
+
+		Complaint complaint = repo.findById(compid).orElse(null);
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("netComplaint.jsp");
+		mv.addObject("complaint" , complaint);
+		return mv;
+	}
+	
+	@GetMapping("netcomplaint/view/{compid}")
+	public ModelAndView updateNetComplaint(@PathVariable("compid") int compid , @RequestParam("status") String status ,
+			@RequestParam("message") String message) {
+
+		int id = repo.updateComplaint(status , message , compid);
+		ModelAndView mv = new ModelAndView();
+	    mv.setViewName("redirect:/netcomplist");
+		return mv;
+	}
+	
+	
+	
+	
 	
 	/*---------  Track Status  -------------*/
 	@GetMapping("/trackstatus")

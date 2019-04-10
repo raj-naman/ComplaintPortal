@@ -1,6 +1,11 @@
+
+
+
+
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+     pageEncoding="UTF-8"%> 
+ <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
 <html>
@@ -14,16 +19,16 @@
      
 	 response.setHeader("Cache-Control" , "no-cache , no-store , must-revalidae");   
    
-     if(session.getAttribute("username") == null){
-    	 response.sendRedirect("/wardenlogin");
-     }
+    if(session.getAttribute("username") == null)
+	 response.sendRedirect("/wardenlogin");
+
 %>
 <a href = "/wardenlogout">Logout</a>
 
-</br>
+<br>
 Welcome Warden
 
-</br>
+<br>
 <a href = "/bhaskaracomplist">Bhaskar Complaint List</a>
 <br>
 <a href = "/lilavaticomplist">Lilavati Complaint List</a>

@@ -22,30 +22,33 @@ public class Complaint
 	private String name;
 	private String hostel;
 	private int room;
-	private String degree;
-	private int year;
 	private String ctype;
 	private String compbody;
 	private String status;
 	private String message;
-	private String password;
+	private String timestamp;
 	
-	@CreationTimestamp
-	@Temporal(TemporalType.DATE)
-	private Date createDate;
+	
+	public Complaint() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	
+	public Complaint(int id, String roll, String name, String hostel, int room, String ctype, String compbody,
+			String status, String message, String timestamp) {
+		super();
+		this.id = id;
+		this.roll = roll;
+		this.name = name;
+		this.hostel = hostel;
+		this.room = room;
+		this.ctype = ctype;
+		this.compbody = compbody;
+		this.status = status;
+		this.message = message;
+		this.timestamp = timestamp;
+	}
 
-	@CreationTimestamp
-	@Temporal(TemporalType.DATE)
-	private Date modifyDate;
-	
-	@CreationTimestamp
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date createTimestamp;
-
-	@CreationTimestamp
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date updateTimestamp;
-	
 	public int getId() {
 		return id;
 	}
@@ -76,18 +79,7 @@ public class Complaint
 	public void setRoom(int room) {
 		this.room = room;
 	}
-	public String getDegree() {
-		return degree;
-	}
-	public void setDegree(String degree) {
-		this.degree = degree;
-	}
-	public int getYear() {
-		return year;
-	}
-	public void setYear(int year) {
-		this.year = year;
-	}
+	
 	public String getCtype() {
 		return ctype;
 	}
@@ -112,42 +104,16 @@ public class Complaint
 	public void setMessage(String message) {
 		this.message = message;
 	}
-	public String getPassword() {
-		return password;
-	}
-	public void setPassword(String password) {
-		this.password = password;
-	}
-	public Date getCreateDate() {
-		return createDate;
-	}
-	public void setCreateDate(Date createDate) {
-		this.createDate = createDate;
-	}
-	public Date getModifyDate() {
-		return modifyDate;
-	}
-	public void setModifyDate(Date modifyDate) {
-		this.modifyDate = modifyDate;
-	}
-	public Date getCreateTimestamp() {
-		return createTimestamp;
-	}
-	public void setCreateTimestamp(Date createTimestamp) {
-		this.createTimestamp = createTimestamp;
-	}
-	public Date getUpdateTimestamp() {
-		return updateTimestamp;
-	}
-	public void setUpdateTimestamp(Date updateTimestamp) {
-		this.updateTimestamp = updateTimestamp;
-	}
+
 	@Override
 	public String toString() {
 		return "Complaint [id=" + id + ", roll=" + roll + ", name=" + name + ", hostel=" + hostel + ", room=" + room
-				+ ", degree=" + degree + ", year=" + year + ", ctype=" + ctype + ", compbody=" + compbody + ", status="
-				+ status + ", message=" + message + ", createDate=" + createDate + ", modifyDate=" + modifyDate + "]";
+				+ ", ctype=" + ctype + ", compbody=" + compbody + ", status=" + status + ", message=" + message
+				+ ", timestamp=" + timestamp + "]";
 	}
+	
+	
+	
 	
 	
 	

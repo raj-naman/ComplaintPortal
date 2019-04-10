@@ -10,19 +10,17 @@ public class Student
 {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private String id;
+	private int id;
 	private String roll;
+	private String email;
 	private String name;
 	private String hostel;
 	private int room;
-	private String degree;
-	private int year; 
 	private String password;
-	
-	public String getId() {
+	public int getId() {
 		return id;
 	}
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 	public String getRoll() {
@@ -30,6 +28,12 @@ public class Student
 	}
 	public void setRoll(String roll) {
 		this.roll = roll;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
 	}
 	public String getName() {
 		return name;
@@ -49,29 +53,12 @@ public class Student
 	public void setRoom(int room) {
 		this.room = room;
 	}
-	public String getDegree() {
-		return degree;
-	}
-	public void setDegree(String degree) {
-		this.degree = degree;
-	}
-	public int getYear() {
-		return year;
-	}
-	public void setYear(int year) {
-		this.year = year;
-	}
 	public String getPassword() {
 		return password;
 	}
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	@Override
-	public String toString() {
-		return "Student [roll=" + roll + ", name=" + name + ", hostel=" + hostel + ", room=" + room + ", degree="
-				+ degree + ", year=" + year + ", password=" + password + "]";
-	}
 	
-
+	
 }
