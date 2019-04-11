@@ -105,6 +105,14 @@ public class Complaint
 		this.message = message;
 	}
 
+	public String getTimestamp() {
+		return timestamp;
+	}
+
+	public void setTimestamp(String timestamp) {
+		this.timestamp = timestamp;
+	}
+
 	@Override
 	public String toString() {
 		return "Complaint [id=" + id + ", roll=" + roll + ", name=" + name + ", hostel=" + hostel + ", room=" + room

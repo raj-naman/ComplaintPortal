@@ -4,26 +4,49 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>FoodCom Login</title>
+<link href="/css/login.css" rel="stylesheet" type="text/css">
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 </head>
 <body>
 
-<form action = "/register-success" method = "post">
 
-	Roll No. <input type = "text" name = "roll">
-	<br>
-	Email:  <input type = "text" name = "email">
-	<br>
-	Name: <input type = "text" name = "name">
-	<br>
-	Room: <input type = "text" name = "room">
-	<br>
-	
-	<input type = "submit" value = "Register">
-
-
-</form>
-
+<div class="sidenav">
+         <div class="login-main-text">
+            <h2>Hello, Food Committee<br> </h2>
+            <br>
+            <p>Login to Manage Complaints!</p>
+         </div>
+      </div>
+      <div class="main">
+      
+         <div class="col-md-6 col-sm-12">
+            <div class="login-form">
+               <form action = "/register-success" method = "post">
+                  <div class="form-group">
+                     <label>Roll No.</label>
+                     <input type="text" class="form-control" placeholder="Enter Roll No." name="roll">
+                  </div>
+                  <div class="form-group">
+                     <label>Email</label>
+                     <input type="password" class="form-control" placeholder="Enter Email" name="email">
+                  </div>
+                  <div class="form-group">
+                     <label>Name</label>
+                     <input type="password" class="form-control" placeholder="Enter Name" name="name">
+                  </div>
+                  <div class="form-group">
+                     <label>Room No.</label>
+                     <input type="password" class="form-control" placeholder="Enter Room No." name="room">
+                  </div>
+                  <button type="submit" class="btn btn-black">Register</button>
+               </form>
+            </div>
+         </div>
+      </div>
 
 </body>
 </html>
+

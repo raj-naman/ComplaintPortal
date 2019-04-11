@@ -41,7 +41,7 @@
     <thead>
     <tr>
       <th scope="col">Complaint Type</th>
-<!--       <th scope="col">Date</th> -->
+      <th scope="col">Date</th>
       <th scope="col">Your Complaint</th>
       <th scope="col">Status</th>
       <th scope="col">Message</th>
@@ -59,7 +59,7 @@
 </c:choose>
     
       <td>${comp.ctype}</td>
-<%--       <td>${comp.timestamp}</td> --%>
+	  <td>${comp.timestamp}</td>
       <td>${comp.compbody}</td>
       <td>${comp.status}</td>
        <td>${comp.message}</td>

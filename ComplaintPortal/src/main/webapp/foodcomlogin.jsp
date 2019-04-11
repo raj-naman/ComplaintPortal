@@ -21,9 +21,10 @@
          </div>
       </div>
       <div class="main">
+      
          <div class="col-md-6 col-sm-12">
             <div class="login-form">
-               <form action = "/login-fcom">
+               <form action = "/login-fcom" method = "post">
                   <div class="form-group">
                      <label>User Name</label>
                      <input type="text" class="form-control" placeholder="User Name" name="username">

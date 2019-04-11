@@ -22,8 +22,8 @@
       </div>
       <div class="main">
          <div class="col-md-6 col-sm-12">
-            <div class="login-form">
-               <form action = "/login-sportscom">
+            <div class="login-form" >
+               <form action = "/login-sportscom" method = "post">
                   <div class="form-group">
                      <label>User Name</label>
                      <input type="text" class="form-control" placeholder="User Name" name="username">

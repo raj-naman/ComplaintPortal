@@ -26,6 +26,8 @@
 
 <div class="container">
 <div class="row">
+<div class="col-md-6 col-md-offset-3">
+        <div class="well well-sm">
  <form class="form-horizontal" action="/success" method = "post">
   <fieldset>
             <legend class="text-center">Add Complaint</legend>
@@ -55,6 +57,8 @@
           </fieldset>
   	
   </form>
+  </div>
+  </div>
   </div>
   </div>
 

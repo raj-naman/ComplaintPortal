@@ -20,7 +20,7 @@
 			      <a class="navbar-brand" href="#">
 			      <center><h4>WebSiteName</h4></center></a>
 			    </div> -->
-			    <center><h2 style="color:green">IIITB Complaint Portal</h2></center></a>
+			    <center><h2 style="color:green">IIITB Complaint Portal</h2></center>
 			    <br>
 			    <ul class="nav navbar-nav  mr-auto ">
 			      <li class="nav-item"><a href="/">Home</a></li>
