@@ -22,19 +22,17 @@
 %>
 
 <div class="container" align="right">
+  <a  href="/change" class="btn btn-info" role="button">Change Password</a>
   <a  href="/studentlogout" class="btn btn-info" role="button">Log Out</a>
+  
 </div>
 <h1>Hello <%= (String)session.getAttribute("username") %> </h1>
 
 <div class="container" align="center">
   <a  href="/addComplaint" class="btn btn-info" role="button">Add Complaint</a>
-  <div class="container" align="right">
-  	<a  href="/change" class="btn btn-info" role="button">Change Password</a>
-  </div>
 </div>
 
 <h3>Your Complaints</h3>
-<br><br>
 
 <table class="table table-striped table-hover">
   

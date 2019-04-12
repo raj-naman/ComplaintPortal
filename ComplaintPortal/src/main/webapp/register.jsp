@@ -35,11 +35,11 @@
                   </div>
                   <div class="form-group">
                      <label>Name</label>
-                     <input type="password" class="form-control" placeholder="Enter Name" name="name">
+                     <input type="text" class="form-control" placeholder="Enter Name" name="name">
                   </div>
                   <div class="form-group">
                      <label>Room No.</label>
-                     <input type="password" class="form-control" placeholder="Enter Room No." name="room">
+                     <input type="text" class="form-control" placeholder="Enter Room No." name="room">
                   </div>
                   <button type="submit" class="btn btn-black">Register</button>
                </form>
