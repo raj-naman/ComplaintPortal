@@ -32,18 +32,16 @@
                      <input type="password" class="form-control" placeholder="Password" name="password">
                   </div>
                   <button type="submit" class="btn btn-black">Submit</button>
+                  <h6 align="left"><a href = "/forgot">Forgot Password</a></h6>
                </form>
+               
             </div>
          </div>
       </div>
 
 
 
-<!-- <form action = "/getComplaints" method = "post"> -->
-<!--   Enter Roll No.: <input type = "text" name = "roll"> -->
-<!--   Enter Password.: <input type = "password" name = "password"> -->
-<!--   <input type = "submit"> -->
-<!-- </form> -->
+
 
 </body>
 </html>

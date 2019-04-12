@@ -32,11 +32,11 @@
 
 <br><br>
 
-<table class="table table-striped">
+<table class="table table-striped table-hover">
   
-    <thead>
+    <thead class="thead-dark">
     <tr>
-      <th scope="col">Roll No</th>
+      <th  scope="col">Roll No</th>
       <th scope="col">Name</th>
       <th scope="col">Room No</th>
       <th scope="col">Date</th>
@@ -45,17 +45,59 @@
   </thead>
   <tbody>
   <c:forEach items="${complaints}" var="comp">
-    <tr>
-      <td><a href = "/sportcomplaint/${comp.id}">${comp.roll}</a></td>
-      <td>${comp.name}</td>
-      <td>${comp.room}</td>
-      <td>${comp.timestamp}</td>
-      <td>${comp.status}</td>
-    </tr>
-    </c:forEach>
+	  <c:if test="${comp.status == 'Pending'}">
+	    <tr>
+	      <td><a href = "/foodcomplaint/${comp.id}">${comp.roll}</a></td>
+	      <td>${comp.name}</td>
+	      <td>${comp.room}</td>
+	      <td>${comp.timestamp}</td>
+	      <td>${comp.status}</td>	
+		  </tr> 
+	   </c:if>
+   </c:forEach>
+  <c:forEach items="${complaints}" var="comp">
+	  <c:if test="${comp.status == 'Accepted'}">
+	    <tr class="table-info">
+	      <td><a href = "/foodcomplaint/${comp.id}">${comp.roll}</a></td>
+	      <td>${comp.name}</td>
+	      <td>${comp.room}</td>
+	      <td>${comp.timestamp}</td>
+	      <td>${comp.status}</td>	
+		  </tr> 
+	   </c:if>
+   </c:forEach>
+   
+   <c:forEach items="${complaints}" var="comp">
+	  <c:if test="${comp.status == 'Rejected'}">
+	    <tr class="table-danger">
+	      <td><a href = "/foodcomplaint/${comp.id}">${comp.roll}</a></td>
+	      <td>${comp.name}</td>
+	      <td>${comp.room}</td>
+	      <td>${comp.timestamp}</td>
+	      <td>${comp.status}</td>	
+		  </tr> 
+	   </c:if>
+   </c:forEach>
+   
+   <c:forEach items="${complaints}" var="comp">
+	  <c:if test="${comp.status == 'Resolved'}">
+	    <tr class="table-success">
+	      <td><a href = "/foodcomplaint/${comp.id}">${comp.roll}</a></td>
+	      <td>${comp.name}</td>
+	      <td>${comp.room}</td>
+	      <td>${comp.timestamp}</td>
+	      <td>${comp.status}</td>	
+		  </tr> 
+	   </c:if>
+   </c:forEach>
+   
+   
+	   
+	   
   </tbody>
   
 </table>
+
 
 </body>
 </html>

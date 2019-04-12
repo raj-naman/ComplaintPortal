@@ -30,8 +30,8 @@
                      <input type="text" class="form-control" placeholder="Enter Roll No." name="roll">
                   </div>
                   <div class="form-group">
-                     <label>Email</label>
-                     <input type="password" class="form-control" placeholder="Enter Email" name="email">
+                     <label>Email(College Id)</label>
+                     <input type="text" class="form-control" placeholder="Enter College Email Id" name="email">
                   </div>
                   <div class="form-group">
                      <label>Name</label>

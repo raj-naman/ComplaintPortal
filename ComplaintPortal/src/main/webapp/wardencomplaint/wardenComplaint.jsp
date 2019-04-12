@@ -48,9 +48,9 @@ integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7Ar
    		<div class="form-group col-sm-12">
 		    <label for="exampleFormControlSelect1">Status</label>
 		    <select class="form-control " id="exampleFormControlSelect1" name = "status">
-		      <option value = "accepted">Accepted</option>
-		      <option value = "resolved">Resolved</option>
-		      <option value = "rejected">Rejected</option>
+		      <option value = "Accepted">Accepted</option>
+		      <option value = "Resolved">Resolved</option>
+		      <option value = "Rejected">Rejected</option>
 		    </select>
 		  </div>
 		  <div class="form-group col-sm-12">

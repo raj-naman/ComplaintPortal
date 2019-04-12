@@ -58,7 +58,7 @@ public class complaintController
 		String roll = (String) session.getAttribute("username");
 		Student student = studentrepo.findByRoll(roll);
 		Complaint complaint  = new Complaint(0, roll, student.getName(), student.getHostel(),
-				student.getRoom(), ctype, compbody,null, null, sdf.format(new Date(System.currentTimeMillis())));
+				student.getRoom(), ctype, compbody, "Pending", "No message", sdf.format(new Date(System.currentTimeMillis())));
 		repo.save(complaint);	
 		mv.setViewName("compconfirmation.jsp");
 		mv.addObject("complaint" , complaint);

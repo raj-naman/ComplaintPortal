@@ -45,22 +45,30 @@ public class StudentController
 	@RequestMapping("/register-success")
 	public ModelAndView registerSuccess(Student student) {
 		ModelAndView mv = new ModelAndView();
-		if(studentrepo.findByRollAndRoom(student.getRoll(), student.getRoom()) != null) {
-			try{
-				String password = notificationservice.sendNotification(student);
-				studentrepo.updateStudent(password, student.getEmail() , student.getName() , student.getRoll());
-				mv.setViewName("registrationsuccess.jsp");
-				mv.addObject("roll" , student.getRoll());
+		String email = student.getEmail();
+		if(email.endsWith("@iiitb.org")) {
+			if(studentrepo.findByRollAndRoom(student.getRoll(), student.getRoom()) != null) {
+				try{
+					String password = notificationservice.sendNotification(student);
+					studentrepo.updateStudent(password, student.getEmail() , student.getName() , student.getRoll());
+					mv.setViewName("registrationsuccess.jsp");
+					mv.addObject("roll" , student.getRoll());
+				}
+				catch(MailException e) {
+					System.out.println(e);
+				}
+				return mv;
 			}
-			catch(MailException e) {
-				System.out.println(e);
+			else{
+				mv.setViewName("redirect:/register");
+				return mv;
 			}
-			return mv;
 		}
 		else{
 			mv.setViewName("redirect:/register");
 			return mv;
 		}
+		
 	}
 	
 	@RequestMapping("/change")

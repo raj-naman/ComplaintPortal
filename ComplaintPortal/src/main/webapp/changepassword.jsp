@@ -7,6 +7,16 @@
 <title>Insert title here</title>
 </head>
 <body>
+<%
+     
+ 	 response.setHeader("Cache-Control" , "no-cache , no-store , must-revalidate");   
+   
+      if(session.getAttribute("username") == null){
+     	 response.sendRedirect("/studentlogin");
+      }
+%>
+
+
 
 <form action="/changepassword">
 	
